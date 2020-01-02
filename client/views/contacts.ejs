@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <% if( allContact.length=== 0) { %>
+    <h3>You have no Contact</h3>
+
+    <%  }else{ %>
+    <table class="table">
+        <thead class="thead-dark">
+
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <% for(let i = 0; i < allContact.length; i++){ %>
+        <tr>
+            <td><%= (i+1) %> </td>
+            <td><%= allContact[i].name %></td>
+            <td><%= allContact[i].phone %></td>
+            <td><%= allContact[i].address %></td>
+            <td>
+                <a href="/contacts/edit/<%=allContact[i].id %>">Edit</a> |
+                <a href="/contacts/delete/<%=allContact[i].id %>"
+                    onclick="alert('are you sure you want to delete this contact?')">Delete</a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <% } %>
+    <h3>Want to Add Contact?</h3>
+    <form method="POST">
+        Name: <input type="text" name="name" required>
+        Phone: <input type="text" name="phone" required>
+        Address: <input type="text" name="address">
+        <button type="submit">Add contact</button>
+    </form>
+</body>
+
+</html>
